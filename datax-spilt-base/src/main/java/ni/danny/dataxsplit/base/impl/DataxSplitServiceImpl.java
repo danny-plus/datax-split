@@ -38,4 +38,5 @@ public abstract class DataxSplitServiceImpl implements DataxSplitService {
     }
 
     protected abstract List<Configuration> split(Configuration splitStrategy,Configuration content);
+
 }
