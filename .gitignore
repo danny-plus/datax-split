@@ -1,0 +1,5 @@
+/.idea/
+/datax-split.iml
+/datax-spilt-base/target/
+/datax-split-hbase11reader/target/
+/datax-split-oraclereader/target/
