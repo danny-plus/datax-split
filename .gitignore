@@ -3,3 +3,6 @@
 /datax-spilt-base/target/
 /datax-split-hbase11reader/target/
 /datax-split-oraclereader/target/
+/datax-spilt-base/datax-spilt-base.iml
+/datax-split-hbase11reader/datax-split-hbase11reader.iml
+/datax-split-oraclereader/datax-split-oraclereader.iml
