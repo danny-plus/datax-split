@@ -37,4 +37,8 @@ public class HBase11DataxSplitServiceImpl extends DataxSplitServiceImpl {
         }
         return resultList;
     }
+
+    public String name() {
+        return "hbase11";
+    }
 }

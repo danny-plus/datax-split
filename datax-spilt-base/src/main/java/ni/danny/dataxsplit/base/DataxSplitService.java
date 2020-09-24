@@ -8,4 +8,5 @@ import java.util.List;
  */
 public interface DataxSplitService{
     void split(String dataxJson,DataxSplitCallback callback);
+    String name();
 }

@@ -74,4 +74,8 @@ public class OracleDataxSplitServiceImpl extends DataxSplitServiceImpl {
         }
         return resultList;
     }
+
+    public String name() {
+        return "oracle";
+    }
 }
