@@ -25,6 +25,19 @@ public class OracleDataxSplitServiceImpl extends DataxSplitServiceImpl {
                 return resultList;
             }
         List<List> splits = splitStrategy.get(OracleKey.SPLIT_STRATEGY_SPLITS,ArrayList.class);
+        if(splits==null||splits.isEmpty()){
+            Long  splitStart = splitStrategy.getLong(OracleKey.SPLIT_STRATEGY_SPLIT_START);
+            Long splitEnd = splitStrategy.getLong(OracleKey.SPLIT_STRATEGY_SPLIT_END);
+            int splitNum = splitStrategy.getInt(OracleKey.SPLIT_STRATEGY_SPLIT_NUM);
+            Long stepNum = (splitEnd-splitStart)/splitNum;
+            splits = new ArrayList<List>(splitNum);
+            for(int i=0;i<=splitNum;i++){
+                List tmpList = new ArrayList(2);
+                tmpList.add(splitStart+stepNum*i);
+                tmpList.add(splitStart+stepNum*(i+1));
+                splits.add(tmpList);
+            }
+        }
         String column = splitStrategy.getString(OracleKey.SPLIT_STRATEGY_COLUMN);
         for(int i=0,z=splits.size();i<z;i++){
 
