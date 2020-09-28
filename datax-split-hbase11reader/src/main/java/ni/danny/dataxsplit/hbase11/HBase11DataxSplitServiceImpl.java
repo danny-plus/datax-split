@@ -21,6 +21,25 @@ public class HBase11DataxSplitServiceImpl extends DataxSplitServiceImpl {
             return resultList;
         }
         List<List> splits = splitStrategy.get(HBase11Key.SPLIT_STRATEGY_SPLITS,ArrayList.class);
+        if(splits==null||splits.isEmpty()){
+
+            String splitStartPos = splitStrategy.getString(HBase11Key.START_POS);
+            String hbaseSplitTypeCode = splitStrategy.getString(HBase11Key.HBASE_TABLE_SPLIT_TYPE);
+            HBaseSplitTypeEnum hbaseSplitType = HBaseSplitTypeEnum.getSplitTypeByCode(hbaseSplitTypeCode);
+            splits = new ArrayList<List>(hbaseSplitType.getNumber());
+            for(int i=0;i<hbaseSplitType.getNumber();i++){
+                List<String> tmpList = new ArrayList<String>(2);
+                String start = i+"_"+splitStartPos;
+                String end = i+"_"+splitStartPos;
+                if(HBaseSplitTypeEnum.HUNDRED.equals(hbaseSplitType)&&i<10){
+                    start = "0"+start;
+                    end = "0"+end;
+                }
+                tmpList.add(start);
+                tmpList.add(end);
+                splits.add(tmpList);
+            }
+        }
         for(int i=0,z=splits.size();i<z;i++){
             log.info("splits===>[{}]",splits.get(i));
             Configuration parameter = content.getConfiguration(HBase11Key.READER_PARAMETER);
