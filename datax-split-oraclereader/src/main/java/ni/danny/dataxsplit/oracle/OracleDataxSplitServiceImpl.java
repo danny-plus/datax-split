@@ -57,9 +57,9 @@ public class OracleDataxSplitServiceImpl extends DataxSplitServiceImpl {
                         newSql.append(" AND ");
                     }
 
-                    newSql.append( column+">= '"+splits.get(i).get(0)+"'" );
+                    newSql.append( column+">= "+splits.get(i).get(0)+"  " );
                     if(splits.get(i).size()==2){
-                        newSql.append(" AND "+column+" <'"+splits.get(i).get(1)+"'");
+                        newSql.append(" AND "+column+" <"+splits.get(i).get(1)+"  ");
                     }
                     newQuerySqls.add(newSql.toString());
                 }
